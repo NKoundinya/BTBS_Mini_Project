@@ -1,0 +1,111 @@
+@charset "ISO-8859-1";
+
+.design {
+	box-shadow: 10px 20px 15px grey;
+	width: 450px;
+	position: absolute;
+	left: 40%;
+	top: 7%;
+}
+
+tr: nth-child (even ){
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
+
+.value {
+	box-shadow: 10px 10px 5px grey;
+	width: 400px;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+	resize: both;
+	overflow: auto;
+}
+
+.valueBus {
+	box-shadow: 10px 10px 5px grey;
+	width: 400px;
+	position: absolute;
+	left: 30%;
+	top: 20%;
+	transform: translate(-50%, -50%);
+}
+.valueBus1 {
+	box-shadow: 10px 10px 5px grey;
+	width: 400px;
+	position: absolute;
+	left: 70%;
+	top: 20%;
+	transform: translate(-50%, -50%);
+}
+
+select {
+	padding: 8px 8px;
+	width: 70%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding-left: 10px;
+	resize: vertical;
+}
+
+.container {
+	display: flex;
+}
+
+input {
+	padding: 8px 8px;
+	width: 70%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding-left: 10px;
+	resize: vertical;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+	width: 300px;
+	border: 3px;
+	padding: 10px;
+}
+
+#remove {
+	background-color: #ccc;
+	width: 100%;
+}
+
+#sub {
+	background: none;
+	color: green;
+	border: none;
+	font: inherit;
+	/*border is optional*/
+	border-bottom: 1px;
+	cursor: pointer;
+}
+
+#customers {
+  family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #00ff40;
+  color: white;
+}
