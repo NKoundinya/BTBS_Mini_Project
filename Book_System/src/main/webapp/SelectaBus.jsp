@@ -1,12 +1,11 @@
-<%@page import="com.comakeit.bs.bean.TicketCost"%>
+<%@page import="com.cmrcet.bs.bean.TicketCost"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="DesignForSelectABus.css">
 </head>
 <body>
 	<%
@@ -15,12 +14,10 @@
 	%>
 	<form action="selected" method="post">
 		<div class="container">
-			<div class="valueBus">
+			<div class="value">
 				<div class="center">
-					<table id="customer">
-						<tr>
-							<th colspan="5" align="center">Buses Available</th>
-						</tr>
+				<h3> Available Buses List </h3>
+					<table>
 						<tr>
 							<th>Bus Name</th>
 							<th>Bus Type</th>
@@ -34,18 +31,17 @@
 						%>
 						<tr>
 							<td><input type="submit" name="busId"
-								value="<%=list.getBusId().getBusid() %>"></td>
-							<% %>
-							<td><%=list.getBusId().getType() %></td>
-							<td><%= list.getCost() %></td>
-							<td><%=list.getSource() %></td>
-							<td><%=list.getDestination() %></td>
+								value="<%=list.getBusId().getBusid()%>"></td>
+							<td><%=list.getBusId().getType()%></td>
+							<td><%=list.getCost()%></td>
+							<td><%=list.getSource()%></td>
+							<td><%=list.getDestination()%></td>
 						</tr>
 						<%
 							}
 								request.removeAttribute("TicketList");
 							} else {
-								%>
+						%>
 						<tr>
 							<td colspan="3">No Buses Available</td>
 						</tr>

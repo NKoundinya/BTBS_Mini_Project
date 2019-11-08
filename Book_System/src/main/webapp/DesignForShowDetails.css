@@ -1,0 +1,41 @@
+.container {
+	display: flex;
+}
+
+.value {
+	box-shadow: 10px 10px 5px grey;
+	width: 900px;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%, -50%);
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+	width: 500px;
+	border: 3px;
+	padding: 10px;
+}
+
+table {
+	border: 3px solid #ddd;
+	border-collapse: collapse;
+}
+
+th {
+	background-color: aquamarine;
+	border: 3px solid #ddd;
+	width: 10%;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
+
+td {
+	background-color: lightblue;
+	border: 3px solid #ddd;
+	width: 10%;
+}

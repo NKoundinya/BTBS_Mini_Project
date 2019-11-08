@@ -1,4 +1,4 @@
-<%@page import="com.comakeit.bs.bean.Buses"%>
+<%@page import="com.cmrcet.bs.bean.Buses"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>

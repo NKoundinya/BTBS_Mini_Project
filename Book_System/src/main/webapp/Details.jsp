@@ -1,4 +1,4 @@
-<%@page import="com.comakeit.bs.bean.UserBean"%>
+<%@page import="com.cmrcet.bs.bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
