@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cmrcet.bs.bean.BusDates;
 import com.cmrcet.bs.bean.Buses;
+import com.cmrcet.bs.bean.Payment;
 import com.cmrcet.bs.bean.Reservation;
 import com.cmrcet.bs.bean.TicketCost;
 import com.cmrcet.bs.bean.UserBean;
@@ -26,7 +27,7 @@ import com.cmrcet.bs.utils.ReservationBusiness;
 
 @RestController
 public class UserRest {
-
+	
 	@Autowired
 	SeatAllocationService sAService;
 
@@ -45,9 +46,6 @@ public class UserRest {
 	@Autowired
 	ReservationService reservationService;
 
-	/*
-	 * Get list of sources available.
-	 */
 	@GetMapping(value = "/sources")
 	public List<String> getSources() {
 
@@ -57,9 +55,6 @@ public class UserRest {
 
 	}
 
-	/*
-	 * Get list of destinations available.
-	 */
 	@GetMapping(value = "/destinations")
 	public List<String> getDestinations() {
 
@@ -69,9 +64,6 @@ public class UserRest {
 
 	}
 
-	/*
-	 * Get details of reservation.
-	 */
 	@PostMapping(value = "/getReserved")
 	public UserBean getReservation(@RequestBody String pnr) {
 
@@ -88,28 +80,20 @@ public class UserRest {
 		return bean;
 	}
 
-	/*
-	 * Get details of buses.
-	 */
 	@PostMapping(value = "/getBuses")
 	public List<TicketCost> getBuses(@RequestBody UserBean bean) {
 
 		List<TicketCost> list = sAService.getBusesList(bean);
-//		for(TicketCost ticket: list) {
-//			System.out.println(ticket);
-//		}
+
 		return list;
 
 	}
 
-	/*
-	 * After selecting a bus.
-	 */
 	@PostMapping(value = "/select")
 	public UserBean selected(@RequestBody UserBean bean) {
 
 		Buses bus = busService.getBus(bean.getReservation().getService().getBus().getBusid());
-
+		
 		BusDates busSer = busDateService.getService(bus, bean.getDate());
 
 		bean.getReservation().setService(busSer);
@@ -120,9 +104,6 @@ public class UserRest {
 
 	}
 
-	/*
-	 * Check available seats.
-	 */
 	@PostMapping(value = "/checkSeats")
 	public Integer checkSeats(@RequestBody UserBean bean) {
 
@@ -131,9 +112,6 @@ public class UserRest {
 
 	}
 
-	/*
-	 * Add reservation.
-	 */
 	@PostMapping(value = "/book")
 	public Reservation book(@RequestBody Reservation reserve) {
 
@@ -143,19 +121,11 @@ public class UserRest {
 
 	}
 
-	/*
-	 * Subtract seats.
-	 */
 	@PutMapping("/setSeats")
 	public void set(@RequestBody Reservation reserve) {
 		sAService.subSeats(reserve);
 	}
 
-	/*
-	 * Cancel a ticket.
-	 * 
-	 * Add seats.
-	 */
 	@DeleteMapping(value = "/cancel/{pnr}")
 	public void cancel(@PathVariable String pnr) {
 
@@ -165,4 +135,16 @@ public class UserRest {
 
 	}
 
+	@PostMapping("/addPayment")
+	public void addPayment(@RequestBody Payment payment) {
+		reservationService.addPayment(payment);
+	}
+	
+	@DeleteMapping("/removePayment/{pnr}")
+	public void removePayment(@PathVariable String pnr) {
+		
+		Payment payment = reservationService.getPayment(pnr);
+		reservationService.removePay(payment);
+		
+	}
 }

@@ -15,16 +15,9 @@ public class Control {
 	@Autowired
 	SeatRestCall restSeat;
 	
-	/*
-	 * Controller of JSP from index to other.
-	 */
 	@RequestMapping(value = "/controller")
 	public String controller(String control, ModelMap map) {
 
-		/*
-		 * Passes a list of sources and destinations available and redirects from
-		 * index.jsp to SelectRoute.jsp
-		 */
 		if (control.equals("Book Ticket")) {
 
 			List<String> sources = restSeat.getSources("sources");

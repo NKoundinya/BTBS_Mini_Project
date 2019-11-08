@@ -15,9 +15,6 @@ import com.cmrcet.bs.bean.UserBean;
 @Service
 public class TicketCostBusiness {
 
-	/*
-	 * Calculate cost of a single ticket for a list of buses.
-	 */
 	public List<TicketCost> getCost(UserBean bean, Set<String> buses, List<TicketCost> busList) {
 
 		String source = bean.getSource();
@@ -57,9 +54,6 @@ public class TicketCostBusiness {
 
 	}
 
-	/*
-	 * Calculate cost of tickets booked by User.
-	 */
 	public int getCost(UserBean bean, List<TicketCost> list) {
 
 		Reservation reservation = bean.getReservation();
@@ -89,16 +83,26 @@ public class TicketCostBusiness {
 		System.out.println("Days: " + Period.between(today, date).getDays());
 
 		if (Period.between(today, date).getMonths() >= 3) {
+
 			return cost -= (cost * 0.3);
+
 		} else if (Period.between(today, date).getMonths() >= 2) {
+
 			return cost -= (cost * 0.2);
+
 		} else if (Period.between(today, date).getMonths() >= 1) {
+
 			return cost -= (cost * 0.1);
+
 		} else if (Period.between(today, date).getDays() <= 10 && Period.between(today, date).getDays() >= 3) {
+
 			return cost -= (cost * 0.05);
+
 		} else if (Period.between(today, date).getDays() == 0 || Period.between(date, today).getDays() == 2
 				|| Period.between(today, date).getDays() == 3) {
+
 			return cost += (cost * 0.1);
+
 		}
 
 		return cost;

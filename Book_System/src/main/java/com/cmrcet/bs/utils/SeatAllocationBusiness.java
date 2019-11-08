@@ -25,9 +25,6 @@ public class SeatAllocationBusiness {
 	@Autowired
 	BusDatesService busServiceDAO;
 
-	/*
-	 * Get buses on the source and destination specified.
-	 */
 	public Set<String> getBusesList(UserBean bean, List<SeatAllocation> list) {
 
 
@@ -59,9 +56,6 @@ public class SeatAllocationBusiness {
 		return buses;
 	}
 
-	/*
-	 * Get a list of buses available in a week.
-	 */
 	public List<BusDates> getServiceLists(List<BusDates> busService) {
 
 		List<BusDates> list = new ArrayList<>();
@@ -78,9 +72,6 @@ public class SeatAllocationBusiness {
 		return busService;
 	}
 
-	/*
-	 * Checking available seats for the source and destination specified by user.
-	 */
 	public Integer checkSeats(UserBean bean, List<SeatAllocation> seatList) {
 
 		String destination = bean.getDestination();
@@ -100,9 +91,6 @@ public class SeatAllocationBusiness {
 		return seats;
 	}
 
-	/*
-	 * Checking remaining seats in a bus.
-	 */
 	public Integer checkSeats(BusDates busService, List<SeatAllocation> seatList) {
 		
 		Reservation reservation = new Reservation();
@@ -120,9 +108,6 @@ public class SeatAllocationBusiness {
 		return seats;
 	}
 
-	/*
-	 * Adding seats when a ticket is cancelled.
-	 */
 	public void addSeats(List<SeatAllocation> seatList, Reservation reservation) {
 
 		String destination = reservation.getDestination();
@@ -143,9 +128,6 @@ public class SeatAllocationBusiness {
 
 	}
 
-	/*
-	 * Subtracting seats when a ticket is booked.
-	 */
 	public void subSeats(List<SeatAllocation> seatList, Reservation reservation) {
 
 		String destination = reservation.getDestination();

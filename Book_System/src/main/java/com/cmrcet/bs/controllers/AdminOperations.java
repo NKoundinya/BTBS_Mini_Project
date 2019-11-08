@@ -25,9 +25,6 @@ public class AdminOperations {
 	@Autowired
 	BusDatesRestCall restBusDates;
 	
-	/*
-	 * Gets available sources and destinations.
-	 */
 	@RequestMapping("/BusesBetween")
 	public String busesBetween(ModelMap map) {
 		
@@ -45,9 +42,6 @@ public class AdminOperations {
 		
 	}
 	
-	/*
-	 * Redirecting to AdminRest to get a List of passengers on the bus given and date specified.
-	 */
 	@RequestMapping("/BusDetails")
 	public String busDetails(String busId, String dateOfTravel, ModelMap map) {
 
@@ -59,9 +53,6 @@ public class AdminOperations {
 		
 	}
 	
-	/*
-	 * To get a income of bus on a specified date.
-	 */
 	@RequestMapping("/GetIncome")
 	public String getIncome(String busId, String dateOfTravel, ModelMap map) {
 
@@ -72,9 +63,6 @@ public class AdminOperations {
 		return "ShowDetails";
 	}
 	
-	/*
-	 * To get a bus list with the specified source and destination.
-	 */
 	@RequestMapping("/BusCount")
 	public String busCount(String Source, String Destination, ModelMap map) {
 		

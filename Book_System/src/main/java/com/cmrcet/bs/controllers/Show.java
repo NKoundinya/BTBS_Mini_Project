@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cmrcet.bs.bean.Payment;
 import com.cmrcet.bs.bean.Reservation;
 import com.cmrcet.bs.bean.UserBean;
 import com.cmrcet.bs.restcalls.SeatRestCall;
@@ -21,11 +22,6 @@ public class Show {
 	@Autowired
 	SeatRestCall restSeat;
 
-	/*
-	 * If PNR number is found, redirects to Details.jsp
-	 * 
-	 * Else to Cancel.jsp
-	 */
 	@RequestMapping(value = "/Details")
 	public String details(String pnr, ModelMap map) {
 
@@ -44,11 +40,6 @@ public class Show {
 		}
 	}
 
-	/*
-	 * If PNR number is found, redirects to Details.jsp
-	 * 
-	 * Else to Cancel.jsp
-	 */
 	@RequestMapping(value = "/DetailsCancel")
 	public String cancelling(String pnr, ModelMap map) {
 
@@ -70,38 +61,31 @@ public class Show {
 		}
 	}
 
-	/*
-	 * After a ticket being booked, the function below adds a record to reservation
-	 * table
-	 */
 	@RequestMapping(value = "/Book")
 	public String book(HttpSession session, ModelMap map) {
 
 		Reservation reservation = (Reservation) session.getAttribute("Reservation");
 		session.removeAttribute("Reservation");
 
+		Payment payment = (Payment) session.getAttribute("payment");
+		session.removeAttribute("payment");
+		
 		reservation = restUser.book("book", reservation);
 		restSeat.setSeats("setSeats", reservation);
+		restUser.addPayment(payment);
 
 		return "index";
 
 	}
 
-	/*
-	 * Details.jsp to Close
-	 */
 	@RequestMapping(value = "/index")
 	public void close() {
 	}
 
-	/*
-	 * Redirecting to DAO to cancel a ticket.
-	 * 
-	 * Deletes a record from reservation table
-	 */
 	@RequestMapping(value = "/Cancel")
 	public String cancel(String pnr) {
 
+		restUser.deletePayment("removePayment/" + pnr);
 		restUser.delete("cancel/" + pnr);
 		return "index";
 

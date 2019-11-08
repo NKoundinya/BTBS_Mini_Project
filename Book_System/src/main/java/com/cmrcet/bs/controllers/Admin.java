@@ -21,9 +21,6 @@ public class Admin {
 	@Autowired
 	BusRestCall busesRest;
 
-	/*
-	 * Validation of Administrator login.
-	 */
 	@RequestMapping("/Admin")
 	public String login(Login login, ModelMap map) {
 
@@ -42,10 +39,6 @@ public class Admin {
 		}
 	}
 
-	/*
-	 * To get passenger details on a specified bus. Passing the list of buses
-	 * available.
-	 */
 	@RequestMapping("/PassengerDetails")
 	public String passengerDetails(ModelMap map) {
 
@@ -59,9 +52,6 @@ public class Admin {
 
 	}
 
-	/*
-	 * To get income of a specified bus. Passing the list of buses available.
-	 */
 	@RequestMapping("/CheckIncome")
 	public String checkIncome(ModelMap map) {
 
@@ -75,9 +65,6 @@ public class Admin {
 
 	}
 
-	/*
-	 * Logout
-	 */
 	@RequestMapping("/Logout")
 	public String logout(ModelMap map) {
 

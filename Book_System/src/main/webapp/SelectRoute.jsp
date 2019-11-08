@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -54,7 +56,7 @@
 				</div>
 				Journey Date and Time:
 				<div class="center">
-					<input type="date" name="date" value="2019-08-13">
+					<input type="date" name="date" min="<%= LocalDate.now() %>" value="<%= LocalDate.now() %>">
 				</div>
 				<div class="center">
 					<input id="remove" type="submit" value="Go ->">

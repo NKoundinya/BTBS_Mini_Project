@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cmrcet.bs.bean.BusDates;
+import com.cmrcet.bs.bean.Payment;
 import com.cmrcet.bs.bean.Reservation;
 import com.cmrcet.bs.bean.UserBean;
+import com.cmrcet.bs.repositories.PaymentRepo;
 import com.cmrcet.bs.repositories.ReservationInterface;
 import com.cmrcet.bs.utils.ReservationBusiness;
 
@@ -17,6 +19,9 @@ public class ReservationService implements IReservation {
 
 	@Autowired
 	ReservationInterface crud;
+	
+	@Autowired
+	PaymentRepo payRepo;
 	
 	@Autowired
 	ReservationBusiness rBusiness;
@@ -56,5 +61,17 @@ public class ReservationService implements IReservation {
 		
 		return rBusiness.findBuses(busDates, reserve);
 	}
-	
+
+	public void addPayment(Payment payment) {
+		payRepo.saveAndFlush(payment);
+	}
+
+	public Payment getPayment(String pnr) {
+		
+		return payRepo.findPayment(pnr);
+	}
+
+	public void removePay(Payment payment) {
+		payRepo.delete(payment);
+	}
 }

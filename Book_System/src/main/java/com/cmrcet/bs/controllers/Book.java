@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cmrcet.bs.bean.BusDates;
 import com.cmrcet.bs.bean.Buses;
+import com.cmrcet.bs.bean.Payment;
 import com.cmrcet.bs.bean.Reservation;
 import com.cmrcet.bs.bean.TicketCost;
 import com.cmrcet.bs.bean.UserBean;
@@ -31,10 +32,6 @@ public class Book {
 	@Autowired
 	UserBeanRestCall restUser;
 
-	/*
-	 * After selecting source, destination and date of travel, the list of buses
-	 * available is retrieved.
-	 */
 	@RequestMapping(value = "done")
 	public String done(ModelMap map, UserBean bean, HttpSession session) {
 
@@ -53,17 +50,11 @@ public class Book {
 		return "SelectaBus";
 	}
 
-	/*
-	 * After selecting a bus.
-	 */
 	@RequestMapping(value = "selected")
 	public String selected(ModelMap map, HttpSession session, String busId) {
 
 		UserBean bean = (UserBean) session.getAttribute("UserBean");
 
-		/*
-		 * Add busId to reservation.
-		 */
 		Buses b = new Buses();
 		b.setBusid(busId);
 
@@ -79,16 +70,10 @@ public class Book {
 
 		HttpEntity<UserBean> requestEntity = new HttpEntity<>(bean);
 
-		/*
-		 * Setting busDate to bean.
-		 */
 		bean = restUser.getUser("select", requestEntity);
 
 		requestEntity = new HttpEntity<>(bean);
 
-		/*
-		 * Checking the availability of seats.
-		 */
 		Integer seats = restSeat.getDestinations("checkSeats", requestEntity);
 
 		if (seats > 4) {
@@ -103,18 +88,8 @@ public class Book {
 
 	}
 
-//	public String Payment(ModelMap map, HttpSession session, Reservation reservation) {
-//		
-//		return "EnterDetails";
-//	}
-	
-	/*
-	 * Reserving the user ticket.
-	 * 
-	 * And displaying his details for his/her confirmation.
-	 */
-	@RequestMapping(value = "/reserve")
-	public String reserve(ModelMap map, HttpSession session, Reservation reservation) {
+	@RequestMapping(value = "/pay")
+	public String Payment(ModelMap map, HttpSession session, Reservation reservation) {
 
 		UserBean bean = (UserBean) session.getAttribute("UserBean");
 
@@ -122,12 +97,24 @@ public class Book {
 		bean.getReservation().setIdProof(reservation.getIdProof());
 		bean.getReservation().setSeats(reservation.getSeats());
 
+		return "Payment";
+	}
+	
+	@RequestMapping(value = "/reserve")
+	public String reserve(ModelMap map, HttpSession session, Payment payment) {
+
+		UserBean bean = (UserBean) session.getAttribute("UserBean");
+
 		HttpEntity<UserBean> requestEntity = new HttpEntity<>(bean);
 
 		bean = restUser.getUser("select", requestEntity);
 
+		payment.setAmount(bean.getCost());
+		payment.setReservation(bean.getReservation());
+		
 		session.setAttribute("Reservation", bean.getReservation());
-
+		session.setAttribute("payment", payment);
+		
 		map.addAttribute("reserved", bean);
 		map.addAttribute("BOOK", "BOOK");
 

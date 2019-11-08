@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.cmrcet.bs.bean.Payment;
 import com.cmrcet.bs.bean.Reservation;
 import com.cmrcet.bs.bean.UserBean;
 import com.cmrcet.bs.constants.URL;
@@ -34,7 +35,7 @@ public class UserBeanRestCall {
 	public UserBean getUser(String path, HttpEntity<UserBean> requestEntity) {
 
 		RestTemplate rest = new RestTemplate();
-
+		
 		return rest
 				.exchange(URL.url + path, HttpMethod.POST, requestEntity, new ParameterizedTypeReference<UserBean>() {
 				}).getBody();
@@ -54,10 +55,24 @@ public class UserBeanRestCall {
 		return rest.postForObject(URL.url + path, reservation, Reservation.class);
 	}
 
+	public void addPayment(Payment payment) {
+		RestTemplate rest = new RestTemplate();
+
+		rest.postForObject(URL.url + "addPayment", payment, Payment.class);
+	}
+	
 	public void delete(String path) {
 
 		RestTemplate rest = new RestTemplate();
 
 		rest.delete(URL.url + path);
+	}
+
+	public void deletePayment(String path) {
+
+		RestTemplate rest = new RestTemplate();
+
+		rest.delete(URL.url + path);
+		
 	}
 }

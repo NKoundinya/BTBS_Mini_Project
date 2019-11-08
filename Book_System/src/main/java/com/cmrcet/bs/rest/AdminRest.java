@@ -47,9 +47,6 @@ public class AdminRest {
 	@Autowired
 	BusDatesService busDateService;
 
-	/*
-	 * Login validation.
-	 */
 	@PostMapping(value = "/login")
 	public Login loginValidate(@RequestBody Login login) {
 		login = loginService.validation(login);
@@ -61,9 +58,6 @@ public class AdminRest {
 		return login;
 	}
 
-	/*
-	 * Gets a list of users on a specified bus and on a specified date.
-	 */
 	@GetMapping(value = "/buses/{busId}/{date}")
 	public List<UserBean> getPassengers(@PathVariable String busId, @PathVariable String date) {
 
@@ -77,9 +71,6 @@ public class AdminRest {
 
 	}
 
-	/*
-	 * Gets income of a specified bus, on a specified date.
-	 */
 	@GetMapping(value = "/income/{busId}/{date}")
 	public UserBean getIncome(@PathVariable String busId, @PathVariable String date) {
 
@@ -96,9 +87,6 @@ public class AdminRest {
 		return bean;
 	}
 
-	/*
-	 * Gets a list of buses on a specified route.
-	 */
 	@GetMapping(value = "/listOfBuses/{source}/{destination}")
 	public List<BusDates> getBusCount(@PathVariable String source, @PathVariable String destination) {
 
@@ -112,9 +100,6 @@ public class AdminRest {
 
 	}
 
-	/*
-	 * Shows the available buses list.
-	 */
 	@GetMapping(value = "busesList")
 	public List<Buses> getLists() {
 

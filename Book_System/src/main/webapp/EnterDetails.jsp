@@ -41,7 +41,7 @@
 	<div class="container">
 		<div class="design">
 			<h2 align="center">Booking Ticket</h2>
-			<form action="reserve" onsubmit="return display();"
+			<form action="pay" onsubmit="return display();"
 				name="form" method="post">
 				Name:
 				<div class="center">

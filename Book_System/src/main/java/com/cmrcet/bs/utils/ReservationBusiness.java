@@ -22,9 +22,6 @@ public class ReservationBusiness {
 	@Autowired
 	TicketCostService ticketService;
 
-	/*
-	 * Auto Generate PNR number.
-	 */
 	public String generatePNR(Reservation reservation) {
 
 		StringBuilder pnr = new StringBuilder();
@@ -47,10 +44,6 @@ public class ReservationBusiness {
 
 	}
 
-
-	/*
-	 * Find a list of passengers who booked a ticket on specified date.
-	 */
 	public List<UserBean> findPassengers(BusDates busService, List<Reservation> list) {
 
 		List<UserBean> listOfBean = new ArrayList<>();
@@ -67,16 +60,10 @@ public class ReservationBusiness {
 		return listOfBean;
 	}
 
-	/*
-	 * To get buServices on a specified date.
-	 */
 	public UserBean findBuses(BusDates busService, List<Reservation> list) {
 
 		UserBean bean = new UserBean();
 
-		/*
-		 * Null check for no service on a date specified.
-		 */
 		if (list.isEmpty()) {
 
 			Reservation rev = new Reservation();
