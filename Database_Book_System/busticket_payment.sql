@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `busservice`
+-- Table structure for table `payment`
 --
 
-DROP TABLE IF EXISTS `busservice`;
+DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `busservice` (
-  `serviceid` varchar(20) NOT NULL,
-  `busid` varchar(20) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`serviceid`),
-  KEY `FKliguaplpok8sxx5t3jo2udedx` (`busid`),
-  CONSTRAINT `FKliguaplpok8sxx5t3jo2udedx` FOREIGN KEY (`busid`) REFERENCES `bus` (`busid`),
-  CONSTRAINT `busservice_ibfk_1` FOREIGN KEY (`busid`) REFERENCES `bus` (`busid`)
+CREATE TABLE `payment` (
+  `pnrid` varchar(20) DEFAULT NULL,
+  `holder` varchar(45) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `cardNumber` varchar(255) DEFAULT NULL,
+  KEY `pnrid` (`pnrid`),
+  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`pnrid`) REFERENCES `reservation` (`pnr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `busservice`
+-- Dumping data for table `payment`
 --
 
-LOCK TABLES `busservice` WRITE;
-/*!40000 ALTER TABLE `busservice` DISABLE KEYS */;
-INSERT INTO `busservice` VALUES ('SERBUS101','Bus1','2019-11-08'),('SERBUS102','Bus1','2019-11-09'),('SERBUS201','Bus2','2019-11-08'),('SERBUS202','Bus2','2019-11-09'),('SERBUS301','Bus3','2019-11-08'),('SERBUS302','Bus3','2019-11-09'),('SERBUS401','Bus4','2019-11-08'),('SERBUS402','Bus4','2019-11-09');
-/*!40000 ALTER TABLE `busservice` ENABLE KEYS */;
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+INSERT INTO `payment` VALUES ('TSERBUS201gd59','Name',55,6,'1452145221452145');
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-08 12:49:35
+-- Dump completed on 2019-11-08 12:49:31
